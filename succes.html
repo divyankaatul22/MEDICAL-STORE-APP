@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payment Successful</title>
+<style>
+  body {
+    margin:0;
+    font-family: Arial;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+  .box {
+    text-align:center;
+  }
+  .checkmark {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#28a745;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    animation: pop 0.5s ease-out;
+  }
+  .checkmark svg {
+    width:70px;
+    fill:white;
+  }
+  @keyframes pop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  h2 { margin-top:20px; color:#28a745; font-size:28px; }
+  p { font-size:18px; opacity:0.7; }
+  .btn {
+    background:#1b4c84;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+    margin-top:25px;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <div class="checkmark">
+    <svg viewBox="0 0 52 52">
+      <path d="M26 0C11.64 0 0 11.64 0 26s11.64 26 26 26 26-11.64 26-26S40.36 0 26 0zm0 50C12.77 50 2 39.23 2 26S12.77 2 26 2s24 10.77 24 24-10.77 24-24 24zm11.03-30.97L23 33l-8.03-8.03-2.12 2.12L23 37.24l16.15-16.15-2.12-2.06z"/>
+    </svg>
+  </div>
+  <h2>Payment Successful!</h2>
+  <p id="usernameMsg"></p>
+  <p>Your order has been placed.</p>
+  <p>Thank you ❤️</p>
+
+  <!-- Button to go back to Order Page -->
+  <a href="order.html">
+    <button class="btn">Back to Order Page</button>
+  </a>
+</div>
+
+<script>
+  // Show username
+  const username = localStorage.getItem("username");
+  if(username){
+    document.getElementById("usernameMsg").textContent = "Hello, " + username + "!";
+  }
+</script>
+
+</body>
+</html>
+

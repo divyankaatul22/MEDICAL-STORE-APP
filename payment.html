@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Method</title>
+  <style>
+    body { margin:0; font-family: Arial; background:#f4f4f4; }
+    header {
+      background:#1b4c84;
+      color:white;
+      padding:15px;
+      text-align:center;
+      font-size:22px;
+      font-weight:bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #usernameDisplay {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    .container { padding:20px; }
+    .box {
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      margin-bottom:15px;
+      box-shadow:0 2px 6px rgba(0,0,0,0.1);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      cursor:pointer;
+    }
+    .box:hover { background:#e9eef7; }
+    button {
+      width:100%;
+      padding:12px;
+      background:#1b4c84;
+      color:white;
+      border:none;
+      border-radius:8px;
+      font-size:18px;
+      cursor:pointer;
+      margin-top:20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  Select Payment Method
+  <span id="usernameDisplay"></span>
+</header>
+
+<div class="container">
+  <div class="box" onclick="selectPayment('Cash on Delivery')">
+    <span><strong>Cash on Delivery (COD)</strong></span>💵
+  </div>
+
+  <div class="box" onclick="selectPayment('Online Payment')">
+    <span><strong>Online Payment</strong></span>💳
+  </div>
+
+  <div id="onlineOptions" style="display:none; margin-top:20px;">
+    <div class="box" onclick="selectPayment('UPI - Google Pay')">
+      <span>Google Pay (UPI)</span>📱
+    </div>
+    <div class="box" onclick="selectPayment('UPI - PhonePe')">
+      <span>PhonePe (UPI)</span>📲
+    </div>
+    <div class="box" onclick="selectPayment('UPI - Paytm')">
+      <span>Paytm (UPI)</span>💠
+    </div>
+    <div class="box" onclick="selectPayment('Credit/Debit Card')">
+      <span>Credit / Debit Card</span>💳
+    </div>
+  </div>
+
+  <button onclick="confirmPayment()">Continue</button>
+</div>
+
+<script>
+  // ✅ Check username
+  const username = localStorage.getItem("username");
+  if (!username) {
+    window.location.href = "login.html"; // redirect if no username
+  } else {
+    document.getElementById("usernameDisplay").textContent = "Hello, " + username;
+  }
+
+  let payment = null;
+
+  function selectPayment(method) {
+    payment = method;
+
+    if (method === 'Online Payment') {
+      document.getElementById('onlineOptions').style.display = 'block';
+    } else {
+      document.getElementById('onlineOptions').style.display = 'none';
+    }
+
+    alert(method + " selected");
+  }
+
+  function confirmPayment() {
+    if (!payment) {
+      alert("Please select a payment method first.");
+      return;
+    }
+    alert("Payment Method Confirmed: " + payment);
+    window.location.href = "success.html"; // go to success page
+  }
+</script>
+
+</body>
+</html>
